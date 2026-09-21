@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { config } from './config/env';
 
 export interface ItunesPodcast {
     trackId: number;
@@ -13,7 +14,7 @@ export interface ItunesPodcast {
 }
 
 export class ItunesClient {
-    private baseURL = 'https://itunes.apple.com';
+    private baseURL = config.itunesProviderUrl;
 
     async searchPodcasts(term: string, limit = 50): Promise<ItunesPodcast[]> {
         const res = await axios.get(`${this.baseURL}/search`, {
